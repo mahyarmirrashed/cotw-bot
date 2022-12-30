@@ -35,3 +35,4 @@ Future features:
 
 - Add ability to group reasons together under one individual on Discord server
 - Add link in `README.md` for adding Discord bot to your server
+- Add branch for hosting website explaining project
