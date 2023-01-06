@@ -25,5 +25,16 @@ export default class Bot extends Client {
       .login(process.env.DISCORD_TOKEN as string)
       .catch(console.error)
       .then(() => console.log('Logged in to client!'));
+
+    this.registerEvents();
+    this.registerSlashCommands();
+  }
+
+  private registerEvents(): void {
+    //
+  }
+
+  private registerSlashCommands(): void {
+    //
   }
 }
