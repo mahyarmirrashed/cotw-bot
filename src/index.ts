@@ -6,7 +6,7 @@ config();
 
 const REQUIRED_ENVVARS = ['DISCORD_TOKEN'];
 const MISSING_ENVVARS = REQUIRED_ENVVARS.filter(
-  (envVar) => !process.env[envVar],
+  (envVar) => !process.env[envVar]
 );
 
 const anyUnsetEnvVars = (): boolean => MISSING_ENVVARS.length === 0;

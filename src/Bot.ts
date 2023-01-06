@@ -3,7 +3,7 @@ import {
   ActivityType,
   Client,
   IntentsBitField,
-  PresenceUpdateStatus,
+  PresenceUpdateStatus
 } from 'discord.js';
 
 export default class Bot extends Client {
@@ -15,10 +15,10 @@ export default class Bot extends Client {
         status: PresenceUpdateStatus.Online,
         afk: false,
         activities: [
-          { type: ActivityType.Watching, name: 'for chumps & champs' },
-        ],
+          { type: ActivityType.Watching, name: 'for chumps & champs' }
+        ]
       },
-      intents: IntentsBitField.Flags.GuildMessages,
+      intents: IntentsBitField.Flags.GuildMessages
     });
 
     super
