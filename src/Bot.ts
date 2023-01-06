@@ -15,10 +15,7 @@ export default class Bot extends Client {
         status: PresenceUpdateStatus.Online,
         afk: false,
         activities: [
-          {
-            type: ActivityType.Watching,
-            name: 'for chumps & champs',
-          },
+          { type: ActivityType.Watching, name: 'for chumps & champs' },
         ],
       },
       intents: IntentsBitField.Flags.GuildMessages,
