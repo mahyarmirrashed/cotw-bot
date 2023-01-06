@@ -1,3 +1,4 @@
+import consola from 'consola';
 import {
   ActivityType,
   Client,
@@ -6,6 +7,8 @@ import {
 } from 'discord.js';
 
 export default class Bot extends Client {
+  private readonly logger = consola;
+
   public constructor() {
     super({
       presence: {
@@ -23,8 +26,8 @@ export default class Bot extends Client {
 
     super
       .login(process.env.DISCORD_TOKEN as string)
-      .catch(console.error)
-      .then(() => console.log('Logged in to client!'));
+      .catch(this.logger.error)
+      .then(() => this.logger.info('Logged in to client!'));
 
     this.registerEvents();
     this.registerSlashCommands();
