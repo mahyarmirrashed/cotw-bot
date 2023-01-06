@@ -15,7 +15,7 @@ export default class Bot extends Client {
         activities: [
           {
             type: ActivityType.Watching,
-            name: 'you die on the inside',
+            name: 'for chumps & champs',
           },
         ],
       },
