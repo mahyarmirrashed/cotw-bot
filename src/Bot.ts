@@ -21,6 +21,9 @@ export default class Bot extends Client {
       intents: IntentsBitField.Flags.GuildMessages,
     });
 
-    super.login(process.env.DISCORD_TOKEN as string).catch(console.error);
+    super
+      .login(process.env.DISCORD_TOKEN as string)
+      .catch(console.error)
+      .then(() => console.log('Logged in to client!'));
   }
 }
