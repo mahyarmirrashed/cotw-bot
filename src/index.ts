@@ -4,7 +4,7 @@ import Bot from './Bot';
 // configure environment variables
 config();
 
-const REQUIRED_ENVVARS = ['DISCORD_TOKEN'];
+const REQUIRED_ENVVARS = ['DISCORD_TOKEN', 'DISCORD_CLIENT_ID'];
 const MISSING_ENVVARS = REQUIRED_ENVVARS.filter(
   (envVar) => !process.env[envVar]
 );
