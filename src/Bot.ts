@@ -5,7 +5,9 @@ import {
   ActivityType,
   Client,
   IntentsBitField,
-  PresenceUpdateStatus
+  PresenceUpdateStatus,
+  REST,
+  Routes
 } from 'discord.js';
 import PingCommand from './commands/PingCommand';
 
@@ -52,6 +54,18 @@ export default class Bot extends Client {
   }
 
   private registerCommandsExternally() {
-    //
+    new REST({ version: '10' })
+      .setToken(process.env.DISCORD_TOKEN as string)
+      .put(
+        Routes.applicationGuildCommands(
+          process.env.DISCORD_CLIENT_ID as string,
+          process.env.DEVELOPMENT_SERVER_ID as string
+        ),
+        {
+          body: ENABLED_COMMANDS.map((command) => command.JSON)
+        }
+      )
+      .then(() => this.logger.success('Registered commands externally!'))
+      .catch(this.logger.error);
   }
 }
