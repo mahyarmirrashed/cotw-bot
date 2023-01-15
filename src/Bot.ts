@@ -1,4 +1,4 @@
-import { Command } from './types/Command.d';
+import Command from './types/Command.d';
 import chalk from 'chalk';
 import consola from 'consola';
 import {
@@ -8,6 +8,8 @@ import {
   PresenceUpdateStatus
 } from 'discord.js';
 import PingCommand from './commands/PingCommand';
+
+const ENABLED_COMMANDS: Command[] = [PingCommand];
 
 export default class Bot extends Client {
   private readonly logger = consola;
@@ -42,9 +44,7 @@ export default class Bot extends Client {
   }
 
   private registerCommandsLocally() {
-    const commands: Command[] = [PingCommand];
-
-    commands.forEach((command) =>
+    ENABLED_COMMANDS.forEach((command) =>
       this.logger.info(
         `Registering ${chalk.cyan(command.JSON.name)} command locally...`
       )
