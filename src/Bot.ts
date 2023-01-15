@@ -26,8 +26,11 @@ export default class Bot extends Client {
     super
       .login(process.env.DISCORD_TOKEN as string)
       .catch(this.logger.error)
-      .then(() => this.logger.info('Logged in to client!'));
+      .then(() => this.logger.info('Logged in to client!'))
+      .then(() => this.register());
+  }
 
+  private register() {
     this.registerEvents();
     this.registerCommandsLocally();
     this.registerCommandsExternally();
