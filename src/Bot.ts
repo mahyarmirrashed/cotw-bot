@@ -1,4 +1,5 @@
 import { Command } from './types/Command.d';
+import chalk from 'chalk';
 import consola from 'consola';
 import {
   ActivityType,
@@ -44,7 +45,9 @@ export default class Bot extends Client {
     const commands: Command[] = [PingCommand];
 
     commands.forEach((command) =>
-      this.logger.info(`Registering ${command.JSON.name} command locally...`)
+      this.logger.info(
+        `Registering ${chalk.cyan(command.JSON.name)} command locally...`
+      )
     );
   }
 
