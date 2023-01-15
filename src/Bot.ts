@@ -30,11 +30,11 @@ export default class Bot extends Client {
     this.registerSlashCommands();
   }
 
-  private registerEvents(): void {
+  private registerEvents() {
     //
   }
 
-  private registerSlashCommands(): void {
+  private registerSlashCommands() {
     //
   }
 }
