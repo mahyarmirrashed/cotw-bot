@@ -4,7 +4,9 @@ import {
   CommandInteraction
 } from 'discord.js';
 
-export type Command = {
+type Command = {
   JSON: RESTPostAPIChatInputApplicationCommandsJSONBody;
   callback: (bot: Bot, interaction: CommandInteraction) => void;
 };
+
+export default Command;
