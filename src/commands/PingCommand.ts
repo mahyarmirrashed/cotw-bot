@@ -1,5 +1,6 @@
 import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
 import Bot from 'src/Bot';
+import Command from 'src/interfaces/Command';
 
 const PingCommandJSON = new SlashCommandBuilder()
   .setName('ping')
@@ -13,7 +14,9 @@ const PingCommandCallback = (_bot: Bot, interaction: CommandInteraction) => {
   });
 };
 
-export default {
+const PingCommand: Command = {
   JSON: PingCommandJSON,
   callback: PingCommandCallback
 };
+
+export default PingCommand;

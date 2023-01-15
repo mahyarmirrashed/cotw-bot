@@ -1,12 +1,10 @@
-import Bot from 'src/Bot';
 import {
-  RESTPostAPIChatInputApplicationCommandsJSONBody,
-  CommandInteraction
+  CommandInteraction,
+  RESTPostAPIChatInputApplicationCommandsJSONBody
 } from 'discord.js';
+import Bot from 'src/Bot';
 
-type Command = {
+export default interface Command {
   JSON: RESTPostAPIChatInputApplicationCommandsJSONBody;
   callback: (bot: Bot, interaction: CommandInteraction) => void;
-};
-
-export default Command;
+}

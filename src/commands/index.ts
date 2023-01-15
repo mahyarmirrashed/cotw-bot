@@ -1,4 +1,4 @@
-import Command from 'src/types/Command';
+import Command from 'src/interfaces/Command';
 import PingCommand from './PingCommand';
 
 const commands: Command[] = [PingCommand];
