@@ -27,14 +27,19 @@ export default class Bot extends Client {
       .then(() => this.logger.info('Logged in to client!'));
 
     this.registerEvents();
-    this.registerSlashCommands();
+    this.registerCommandsLocally();
+    this.registerCommandsExternally();
   }
 
   private registerEvents() {
     //
   }
 
-  private registerSlashCommands() {
+  private registerCommandsLocally() {
+    //
+  }
+
+  private registerCommandsExternally() {
     //
   }
 }
