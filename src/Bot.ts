@@ -1,4 +1,3 @@
-import Command from './types/Command.d';
 import chalk from 'chalk';
 import consola from 'consola';
 import {
@@ -9,9 +8,7 @@ import {
   REST,
   Routes
 } from 'discord.js';
-import PingCommand from './commands/PingCommand';
-
-const ENABLED_COMMANDS: Command[] = [PingCommand];
+import commands from './commands';
 
 export default class Bot extends Client {
   private readonly logger = consola;
@@ -46,7 +43,7 @@ export default class Bot extends Client {
   }
 
   private registerCommandsLocally() {
-    ENABLED_COMMANDS.forEach((command) =>
+    commands.forEach((command) =>
       this.logger.info(
         `Registering ${chalk.cyan(command.JSON.name)} command locally...`
       )
@@ -62,7 +59,7 @@ export default class Bot extends Client {
           process.env.DEVELOPMENT_SERVER_ID as string
         ),
         {
-          body: ENABLED_COMMANDS.map((command) => command.JSON)
+          body: commands.map((command) => command.JSON)
         }
       )
       .then(() => this.logger.success('Registered commands externally!'))
