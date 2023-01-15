@@ -1,3 +1,4 @@
+import { Command } from './types/Command.d';
 import consola from 'consola';
 import {
   ActivityType,
@@ -5,6 +6,7 @@ import {
   IntentsBitField,
   PresenceUpdateStatus
 } from 'discord.js';
+import PingCommand from './commands/PingCommand';
 
 export default class Bot extends Client {
   private readonly logger = consola;
@@ -36,7 +38,11 @@ export default class Bot extends Client {
   }
 
   private registerCommandsLocally() {
-    //
+    const commands: Command[] = [PingCommand];
+
+    commands.forEach((command) =>
+      this.logger.info(`Registering ${command.JSON.name} command locally...`)
+    );
   }
 
   private registerCommandsExternally() {
