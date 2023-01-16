@@ -18,8 +18,6 @@ const callback = (bot: Bot, interaction: Interaction) => {
   bot
     .findCommand(interaction.commandName)
     .then((command) => {
-      bot.logger.debug('Handling command...');
-
       if (!command.calledInPermittedChannel(channel.name)) {
         interaction.reply({
           content: 'Not permitted to use this command in this channel.',
