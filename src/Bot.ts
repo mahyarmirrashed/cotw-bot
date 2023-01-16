@@ -35,6 +35,13 @@ export default class Bot extends Client {
       .then(() => this.register());
   }
 
+  public findCommand(commandName: string) {
+    const command = this.commands.get(commandName);
+
+    if (command) return Promise.resolve(command);
+    else return Promise.reject('Command does not exist.');
+  }
+
   private register() {
     this.registerCronEvents();
     this.registerGuildEvents();
