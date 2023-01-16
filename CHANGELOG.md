@@ -1,5 +1,24 @@
 
 
+## [0.2.0](https://github.com/mahyarmirrashed/cotw-bot/compare/v0.1.1...v0.2.0) (2023-01-16)
+
+
+### Features
+
+* add checking if command called in permitted channel ([5c8ef6e](https://github.com/mahyarmirrashed/cotw-bot/commit/5c8ef6eb153afd71185f0a3ca33b9c012aa23843))
+* add command searching ability using promises ([5f59d22](https://github.com/mahyarmirrashed/cotw-bot/commit/5f59d22681ab52d04d04d9466ce1a80f862aa395))
+* add interaction creation event handler ([cf20b14](https://github.com/mahyarmirrashed/cotw-bot/commit/cf20b14120c84f0a0ecadad5cafe77de7ff6a06c))
+* add method to check if calling user has necessary permissions for the command ([283fb74](https://github.com/mahyarmirrashed/cotw-bot/commit/283fb7464763a7bff9f9c7d640708db0cea3af7f))
+* add readonly field for registered commands ([043e760](https://github.com/mahyarmirrashed/cotw-bot/commit/043e760942730cc56361b02cdd8eb87df7fbb1e8))
+* register commands when looping over them ([84cb092](https://github.com/mahyarmirrashed/cotw-bot/commit/84cb09252757792fbd10ff735195117c7feeb194))
+* set to debug console logging ([bd6ec1b](https://github.com/mahyarmirrashed/cotw-bot/commit/bd6ec1beb6517a5b2dfa77405bc74bf512b8fbb9))
+
+
+### Bug Fixes
+
+* enable guilds intent for channel caching ([a9f3154](https://github.com/mahyarmirrashed/cotw-bot/commit/a9f3154c82b53bf137612a37daafd30ffd9f38e1))
+* enable interactionCreate event ([7a643bd](https://github.com/mahyarmirrashed/cotw-bot/commit/7a643bdcc3a7faf91a6294c131bf278a97b921a8))
+
 ### [0.1.1](https://github.com/mahyarmirrashed/cotw-bot/compare/v0.1.0...v0.1.1) (2023-01-16)
 
 ## [0.1.0](https://github.com/mahyarmirrashed/cotw-bot/compare/v0.0.2...v0.1.0) (2023-01-16)
