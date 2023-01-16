@@ -15,19 +15,14 @@ export default class Command {
     private whitelistedChannels: string[] = []
   ) {}
 
-  public getJSON() {
-    return this.json;
+  public calledInPermittedChannel(channel: string) {
+    return (
+      !this.calledInBlacklistedChannel(channel) &&
+      this.calledInWhitelistedChannel(channel)
+    );
   }
 
-  public getName() {
-    return this.json.name;
-  }
-
-  public handle(bot: Bot, interaction: CommandInteraction) {
-    this.callback(bot, interaction);
-  }
-
-  public inBlacklistedChannel(channel: string) {
+  public calledInBlacklistedChannel(channel: string) {
     if (this.blacklistedChannels.length === 0) return false;
 
     return this.blacklistedChannels.some(
@@ -35,7 +30,7 @@ export default class Command {
     );
   }
 
-  public inWhitelistedChannel(channel: string) {
+  public calledInWhitelistedChannel(channel: string) {
     if (this.whitelistedChannels.length === 0) return true;
 
     return this.whitelistedChannels.some(
