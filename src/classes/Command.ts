@@ -1,5 +1,6 @@
 import {
   CommandInteraction,
+  PermissionsBitField,
   RESTPostAPIChatInputApplicationCommandsJSONBody
 } from 'discord.js';
 import Bot from '../Bot';
@@ -12,7 +13,8 @@ export default class Command {
     private json: CommandJSON,
     private callback: CommandCallback,
     private blacklistedChannels: string[] = [],
-    private whitelistedChannels: string[] = []
+    private whitelistedChannels: string[] = [],
+    private necessaryPermissions: bigint[] = []
   ) {}
 
   public calledInPermittedChannel(channel: string) {
@@ -36,5 +38,21 @@ export default class Command {
     return this.whitelistedChannels.some(
       (whitelistedChannel) => whitelistedChannel === channel
     );
+  }
+
+  public calledWithNecessaryPermissions(permissions: PermissionsBitField) {
+    return permissions.has(this.necessaryPermissions);
+  }
+
+  public getJSON() {
+    return this.json;
+  }
+
+  public getName() {
+    return this.json.name;
+  }
+
+  public handle(bot: Bot, interaction: CommandInteraction) {
+    this.callback(bot, interaction);
   }
 }
