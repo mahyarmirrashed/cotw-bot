@@ -10,7 +10,9 @@ type CommandCallback = (bot: Bot, interaction: CommandInteraction) => void;
 export default class Command {
   public constructor(
     private json: CommandJSON,
-    private callback: CommandCallback
+    private callback: CommandCallback,
+    private blacklistedChannels: string[] = [],
+    private whitelistedChannels: string[] = []
   ) {}
 
   public getJSON() {
@@ -25,11 +27,19 @@ export default class Command {
     this.callback(bot, interaction);
   }
 
-  public inBlacklistedChannel() {
-    return false;
+  public inBlacklistedChannel(channel: string) {
+    if (this.blacklistedChannels.length === 0) return false;
+
+    return this.blacklistedChannels.some(
+      (blacklistedChannel) => blacklistedChannel === channel
+    );
   }
 
-  public inWhitelistedChannel() {
-    return false;
+  public inWhitelistedChannel(channel: string) {
+    if (this.whitelistedChannels.length === 0) return true;
+
+    return this.whitelistedChannels.some(
+      (whitelistedChannel) => whitelistedChannel === channel
+    );
   }
 }
