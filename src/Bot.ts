@@ -8,7 +8,8 @@ import {
   REST,
   Routes
 } from 'discord.js';
-import commands from './commands';
+import Commands from './commands';
+import { GuildEvents } from './events';
 
 export default class Bot extends Client {
   private readonly logger = consola;
@@ -43,7 +44,7 @@ export default class Bot extends Client {
   }
 
   private registerCommandsLocally() {
-    commands.forEach((command) =>
+    Commands.forEach((command) => {
       this.logger.info(
         `Registering ${chalk.cyan(command.getName())} command locally...`
       )
@@ -59,7 +60,7 @@ export default class Bot extends Client {
           process.env.DEVELOPMENT_SERVER_ID as string
         ),
         {
-          body: commands.map((command) => command.getJSON())
+          body: Commands.map((command) => command.getJSON())
         }
       )
       .then(() => this.logger.success('Registered commands externally!'))

@@ -1,6 +1,6 @@
 import Command from '../classes/Command';
 import PingCommand from './PingCommand';
 
-const commands: Command[] = [PingCommand];
+const Commands: Command[] = [PingCommand];
 
-export default commands;
+export default Commands;
