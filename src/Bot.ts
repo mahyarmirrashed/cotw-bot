@@ -12,7 +12,7 @@ import Commands from './commands';
 import { GuildEvents } from './events';
 
 export default class Bot extends Client {
-  private readonly logger = consola;
+  public readonly logger = consola;
 
   public constructor() {
     super({
