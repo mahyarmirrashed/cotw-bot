@@ -2,7 +2,8 @@
   "git": {
     "requireCleanWorkingDir": false,
     "commitMessage": "chore(release): ${version}",
-    "commitArgs": ["-S"]
+    "commitArgs": ["-S"],
+    "tagArgs": ["-s"]
   },
   "npm": {
     "publish": false
