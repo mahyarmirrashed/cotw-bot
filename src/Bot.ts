@@ -26,7 +26,10 @@ export default class Bot extends Client {
           { type: ActivityType.Watching, name: 'for chumps & champs' }
         ]
       },
-      intents: IntentsBitField.Flags.GuildMessages
+      intents: [
+        IntentsBitField.Flags.Guilds,
+        IntentsBitField.Flags.GuildMessages
+      ]
     });
 
     super
