@@ -33,12 +33,17 @@ export default class Bot extends Client {
   }
 
   private register() {
-    this.registerEvents();
+    this.registerCronEvents();
+    this.registerGuildEvents();
     this.registerCommandsLocally();
     this.registerCommandsExternally();
   }
 
-  private registerEvents() {
+  private registerCronEvents() {
+    //
+  }
+
+  private registerGuildEvents() {
     GuildEvents.forEach((guildEvent) => {
       this.logger.info(`Registering ${chalk.cyan(guildEvent.name)} event...`);
       this.on(guildEvent.name, guildEvent.callback.bind(null, this));
