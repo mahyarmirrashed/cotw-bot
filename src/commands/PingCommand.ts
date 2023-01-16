@@ -1,22 +1,19 @@
 import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
-import Bot from 'src/Bot';
-import Command from 'src/interfaces/Command';
+import Bot from '../Bot';
+import Command from '../classes/Command';
 
-const PingCommandJSON = new SlashCommandBuilder()
-  .setName('ping')
-  .setDescription('Ping the bot.')
-  .toJSON();
 
-const PingCommandCallback = (_bot: Bot, interaction: CommandInteraction) => {
+const callback = (_bot: Bot, interaction: CommandInteraction) => {
   interaction.reply({
     content: 'Pong!',
     ephemeral: true
   });
 };
 
-const PingCommand: Command = {
-  JSON: PingCommandJSON,
-  callback: PingCommandCallback
-};
-
-export default PingCommand;
+export default new Command(
+  new SlashCommandBuilder()
+    .setName('ping')
+    .setDescription('Ping the bot.')
+    .toJSON(),
+  callback
+);
