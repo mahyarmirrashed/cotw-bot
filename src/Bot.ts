@@ -3,11 +3,13 @@ import consola, { LogLevel } from 'consola';
 import {
   ActivityType,
   Client,
+  Collection,
   IntentsBitField,
   PresenceUpdateStatus,
   REST,
   Routes
 } from 'discord.js';
+import Command from './classes/Command';
 import Commands from './commands';
 import { GuildEvents } from './events';
 
