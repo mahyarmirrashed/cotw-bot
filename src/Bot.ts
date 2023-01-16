@@ -53,9 +53,9 @@ export default class Bot extends Client {
   private registerCommandsLocally() {
     Commands.forEach((command) => {
       this.logger.info(
-        `Registering ${chalk.cyan(command.getName())} command locally...`
-      )
-    );
+        `Registering ${chalk.cyan(command.getName())} command...`
+      );
+    });
   }
 
   private registerCommandsExternally() {
@@ -70,7 +70,7 @@ export default class Bot extends Client {
           body: Commands.map((command) => command.getJSON())
         }
       )
-      .then(() => this.logger.success('Registered commands externally!'))
+      .then(() => this.logger.success('Registered commands externally.'))
       .catch(this.logger.error);
   }
 }
