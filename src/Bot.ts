@@ -58,6 +58,7 @@ export default class Bot extends Client {
       this.logger.info(
         `Registering ${chalk.cyan(command.getName())} command...`
       );
+      this.commands.set(command.getName(), command);
     });
   }
 
