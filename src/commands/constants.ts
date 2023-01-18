@@ -1,0 +1,2 @@
+export const REASON_MINIMUM_LENGTH = 10;
+export const REASON_MAXIMUM_LENGTH = 200;

@@ -1,6 +1,7 @@
 import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
 import Bot from '../Bot';
 import Command from '../classes/Command';
+import { REASON_MAXIMUM_LENGTH, REASON_MINIMUM_LENGTH } from './constants';
 
 const callback = (_bot: Bot, interaction: CommandInteraction) => {
   interaction.reply({
@@ -23,6 +24,8 @@ export default new Command(
       option
         .setName('reason')
         .setDescription('This person is champy for...')
+        .setMinLength(REASON_MINIMUM_LENGTH)
+        .setMaxLength(REASON_MAXIMUM_LENGTH)
         .setRequired(true)
     )
     .toJSON(),
