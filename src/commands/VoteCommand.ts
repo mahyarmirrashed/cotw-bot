@@ -4,8 +4,8 @@ import Command from '../classes/Command';
 
 const callback = (_bot: Bot, interaction: ChatInputCommandInteraction) => {
   const voter = interaction.user;
-  const target = interaction.options.getUser('user');
-  const category = interaction.options.getString('category');
+  const target = interaction.options.getUser('user', true);
+  const category = interaction.options.getString('category', true);
 
   interaction.reply({
     content: `${voter} voted ${target} as this week's ${category}-of-the-week!`

@@ -5,8 +5,8 @@ import { REASON_MAXIMUM_LENGTH, REASON_MINIMUM_LENGTH } from './constants';
 
 const callback = (_bot: Bot, interaction: ChatInputCommandInteraction) => {
   const nominator = interaction.user;
-  const nominee = interaction.options.getUser('user');
-  const reason = interaction.options.getString('reason');
+  const nominee = interaction.options.getUser('user', true);
+  const reason = interaction.options.getString('reason', true);
 
   interaction.reply({
     content: `${nominator} chumped ${nominee} for ${reason}.`
