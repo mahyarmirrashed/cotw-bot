@@ -15,9 +15,9 @@ export default class Command {
   public constructor(
     private json: CommandJSON,
     private callback: CommandCallback,
+    private necessaryPermissions: bigint[] = [],
     private blacklistedChannels: string[] = [],
-    private whitelistedChannels: string[] = [],
-    private necessaryPermissions: bigint[] = []
+    private whitelistedChannels: string[] = []
   ) {}
 
   public calledInPermittedChannel(channel: string) {
