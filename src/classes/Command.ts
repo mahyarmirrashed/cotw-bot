@@ -1,12 +1,15 @@
 import {
-  CommandInteraction,
+  ChatInputCommandInteraction,
   PermissionsBitField,
   RESTPostAPIChatInputApplicationCommandsJSONBody
 } from 'discord.js';
 import Bot from '../Bot';
 
 type CommandJSON = RESTPostAPIChatInputApplicationCommandsJSONBody;
-type CommandCallback = (bot: Bot, interaction: CommandInteraction) => void;
+type CommandCallback = (
+  bot: Bot,
+  interaction: ChatInputCommandInteraction
+) => void;
 
 export default class Command {
   public constructor(
@@ -52,7 +55,7 @@ export default class Command {
     return this.json.name;
   }
 
-  public handle(bot: Bot, interaction: CommandInteraction) {
+  public handle(bot: Bot, interaction: ChatInputCommandInteraction) {
     this.callback(bot, interaction);
   }
 }
