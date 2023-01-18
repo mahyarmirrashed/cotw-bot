@@ -3,12 +3,14 @@ import ChampCommand from './ChampCommand';
 import ChumpCommand from './ChumpCommand';
 import PingCommand from './PingCommand';
 import SetCommand from './SetCommand';
+import VoteCommand from './VoteCommand';
 
 const Commands: Command[] = [
   ChampCommand,
   ChumpCommand,
   PingCommand,
-  SetCommand
+  SetCommand,
+  VoteCommand
 ];
 
 export default Commands;
