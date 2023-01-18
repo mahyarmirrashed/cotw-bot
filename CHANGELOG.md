@@ -1,5 +1,15 @@
 
 
+## [0.3.0](https://github.com/mahyarmirrashed/cotw-bot/compare/v0.2.0...v0.3.0) (2023-01-18)
+
+
+### Features
+
+* add basic outline of `champ` command ([05d7225](https://github.com/mahyarmirrashed/cotw-bot/commit/05d7225b1add9dfa1a878fa260d4c9ea82cbaf97))
+* add basic outline of `chump` command ([74531b8](https://github.com/mahyarmirrashed/cotw-bot/commit/74531b8a62c03df3b3e91e607101849548cbbd9f))
+* add basic outline of `set` command ([690c7df](https://github.com/mahyarmirrashed/cotw-bot/commit/690c7dfcfe45a3a1f9520c836d1c1db87cae0a12))
+* add basic outline of `vote` command ([ba40049](https://github.com/mahyarmirrashed/cotw-bot/commit/ba400498d151ce7b82d9b35d3ec50ec31946e466))
+
 ## [0.2.0](https://github.com/mahyarmirrashed/cotw-bot/compare/v0.1.1...v0.2.0) (2023-01-16)
 
 
