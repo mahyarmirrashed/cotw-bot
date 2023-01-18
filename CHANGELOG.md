@@ -1,5 +1,24 @@
 
 
+## [0.4.0](https://github.com/mahyarmirrashed/cotw-bot/compare/v0.3.0...v0.4.0) (2023-01-18)
+
+
+### Features
+
+* add descriptive interaction reply ([4784f1c](https://github.com/mahyarmirrashed/cotw-bot/commit/4784f1c3f5399414eb702a7891ce4bec41793cab))
+* add descriptive interaction reply ([13a5733](https://github.com/mahyarmirrashed/cotw-bot/commit/13a57331aa0ee0175acbf72471e66f8652796069))
+* add logic for setting cotw channel ([a81afc5](https://github.com/mahyarmirrashed/cotw-bot/commit/a81afc5c80e5e32fb2e080a7ace6b3d5aea82b71))
+* add minimum and maximum lengths for reason ([132c76b](https://github.com/mahyarmirrashed/cotw-bot/commit/132c76b26d340e81eb657f96903d4bf972774487))
+* add required fields when champing someone ([bb60722](https://github.com/mahyarmirrashed/cotw-bot/commit/bb60722a21ef5e7959334e8ea1d0bcc07306dc2a))
+* add user and category options ([247c5c2](https://github.com/mahyarmirrashed/cotw-bot/commit/247c5c278c3c48bcba1ffda8873bf2f1521dd57c))
+
+
+### Bug Fixes
+
+* add error catching to prevent application crashing from raised errors ([e360b8a](https://github.com/mahyarmirrashed/cotw-bot/commit/e360b8a3b6dd22a76874a18799078258f5f1a8a9))
+* add option to indicate that options are required ([e5bef05](https://github.com/mahyarmirrashed/cotw-bot/commit/e5bef05afbd90394275249f8df1da9aaf6df6353))
+* update to use `ChatInputCommandInteraction` instead ([0379af1](https://github.com/mahyarmirrashed/cotw-bot/commit/0379af19cf0b5a70dc13de52c89a2b485d96c7f7))
+
 ## [0.3.0](https://github.com/mahyarmirrashed/cotw-bot/compare/v0.2.0...v0.3.0) (2023-01-18)
 
 
