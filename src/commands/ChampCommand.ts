@@ -13,6 +13,18 @@ export default new Command(
   new SlashCommandBuilder()
     .setName('champ')
     .setDescription('Nominate a Champ of the Week.')
+    .addUserOption((option) =>
+      option
+        .setName('user')
+        .setDescription('Who do you want to nominate?')
+        .setRequired(true)
+    )
+    .addStringOption((option) =>
+      option
+        .setName('reason')
+        .setDescription('This person is champy for...')
+        .setRequired(true)
+    )
     .toJSON(),
   callback
 );
