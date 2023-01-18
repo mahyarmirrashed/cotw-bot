@@ -1,12 +1,15 @@
-import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
+import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 import Bot from '../Bot';
 import Command from '../classes/Command';
 import { REASON_MAXIMUM_LENGTH, REASON_MINIMUM_LENGTH } from './constants';
 
-const callback = (_bot: Bot, interaction: CommandInteraction) => {
+const callback = (_bot: Bot, interaction: ChatInputCommandInteraction) => {
+  const nominator = interaction.user;
+  const nominee = interaction.options.getUser('user');
+  const reason = interaction.options.getString('reason');
+
   interaction.reply({
-    content: 'Received `champ` command.',
-    ephemeral: true
+    content: `${nominator} champed ${nominee} for ${reason}.`
   });
 };
 
