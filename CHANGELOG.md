@@ -76,10 +76,6 @@
 * add requirement for DISCORD_CLIENT_ID envvar ([997bded](https://github.com/mahyarmirrashed/cotw-bot/commit/997bded674fdd0d030e63d270107e3c22f36a1e9))
 * make logger public for other methods to use ([4f277c0](https://github.com/mahyarmirrashed/cotw-bot/commit/4f277c08692456ee67778a1fb5a099830034330a))
 
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
 ### [0.0.2](https://github.com/mahyarmirrashed/cotw-bot/compare/v0.0.1...v0.0.2) (2023-01-06)
 
 
