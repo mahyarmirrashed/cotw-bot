@@ -29,7 +29,11 @@ const callback = (bot: Bot, interaction: Interaction) => {
           ephemeral: true
         });
       } else {
-        command.handle(bot, interaction);
+        try {
+          command.handle(bot, interaction);
+        } catch (err) {
+          bot.logger.error(`Terrible things happened: ${err}`);
+        }
       }
     })
     .catch(bot.logger.error);
