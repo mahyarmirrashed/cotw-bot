@@ -7,6 +7,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Candidate {
+  id          Int           @id @default(autoincrement())
+  candidateId String        @db.VarChar(20)
+  champVotes  Vote[]        @relation(name: "ChampVote")
+  chumpVotes  Vote[]        @relation(name: "ChumpVote")
+  eligibility Eligibility[]
+  weekNumber  Int
+}
+
+model Eligibility {
+  id          Int            @id @default(autoincrement())
+  candidate   Candidate      @relation(fields: [candidateId], references: [id])
+  candidateId Int
+  type        NominationType
+}
+
 enum NominationType {
   CHAMP
   CHUMP
@@ -21,8 +37,6 @@ model Nomination {
   server      Server         @relation(fields: [serverId], references: [id])
   serverId    String         @db.VarChar(20)
   weekNumber  Int
-  champVotes  Vote[]         @relation(name: "ChampVote")
-  chumpVotes  Vote[]         @relation(name: "ChumpVote")
 }
 
 model Server {
@@ -32,10 +46,10 @@ model Server {
 }
 
 model Vote {
-  id         Int        @id @default(autoincrement())
-  voterId    String     @db.VarChar(20)
-  champ      Nomination @relation(name: "ChampVote", fields: [champId], references: [id])
-  chump      Nomination @relation(name: "ChumpVote", fields: [chumpId], references: [id])
+  id         Int       @id @default(autoincrement())
+  voterId    String    @db.VarChar(20)
+  champ      Candidate @relation(name: "ChampVote", fields: [champId], references: [id])
+  chump      Candidate @relation(name: "ChumpVote", fields: [chumpId], references: [id])
   champId    Int
   chumpId    Int
   weekNumber Int
