@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum NominationType {
+  CHAMP
+  CHUMP
+}
+
+model Nomination {
+  id          Int            @id @default(autoincrement())
+  nomineeId   String         @db.VarChar(20)
+  nominatorId String         @db.VarChar(20)
+  reason      String
+  type        NominationType
+  server      Server         @relation(fields: [serverId], references: [id])
+  serverId    String         @db.VarChar(20)
+  weekNumber  Int
+  champVotes  Vote[]         @relation(name: "ChampVote")
+  chumpVotes  Vote[]         @relation(name: "ChumpVote")
+}
+
+model Server {
+  id          String       @id @default(cuid())
+  channelId   String?      @db.VarChar(20)
+  nominations Nomination[]
+}
+
+model Vote {
+  id         Int        @id @default(autoincrement())
+  voterId    String     @db.VarChar(20)
+  champ      Nomination @relation(name: "ChampVote", fields: [champId], references: [id])
+  chump      Nomination @relation(name: "ChumpVote", fields: [chumpId], references: [id])
+  champId    Int
+  chumpId    Int
+  weekNumber Int
+
+  @@unique([voterId, weekNumber])
+}
