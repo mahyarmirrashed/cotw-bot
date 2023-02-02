@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import {
   ChannelType,
   ChatInputCommandInteraction,
-  PermissionFlagsBits,
+  PermissionFlagsBits as PermissionBits,
   SlashCommandBuilder
 } from 'discord.js';
 import Bot from '../Bot';
@@ -43,9 +43,7 @@ const callback = (bot: Bot, interaction: ChatInputCommandInteraction) => {
 
   if (channel.type !== ChannelType.GuildText) {
     sendEphemeralReply(interaction, 'Channel must be a text channel.');
-  } else if (
-    !channel.permissionsFor(me).has(PermissionFlagsBits.SendMessages)
-  ) {
+  } else if (!channel.permissionsFor(me).has(PermissionBits.SendMessages)) {
     sendEphemeralReply(interaction, 'Missing message sending permissions.');
   } else {
     updateServerChannelId(bot.prisma, guild.id, channel.id)
