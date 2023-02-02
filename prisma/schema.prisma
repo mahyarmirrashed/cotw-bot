@@ -48,12 +48,12 @@ model Server {
 }
 
 model Vote {
-  id         Int       @id @default(autoincrement())
-  voterId    String    @db.VarChar(20)
-  champ      Candidate @relation(name: "ChampVote", fields: [champId], references: [id])
-  chump      Candidate @relation(name: "ChumpVote", fields: [chumpId], references: [id])
-  champId    Int
-  chumpId    Int
+  id         Int        @id @default(autoincrement())
+  voterId    String     @db.VarChar(20)
+  champ      Candidate? @relation(name: "ChampVote", fields: [champId], references: [id])
+  chump      Candidate? @relation(name: "ChumpVote", fields: [chumpId], references: [id])
+  champId    Int?
+  chumpId    Int?
   weekNumber Int
 
   @@unique([voterId, weekNumber])
