@@ -1,3 +1,4 @@
+import { PrismaClient } from '@prisma/client';
 import chalk from 'chalk';
 import consola, { LogLevel } from 'consola';
 import {
@@ -16,6 +17,7 @@ import { GuildEvents } from './events';
 export default class Bot extends Client {
   private readonly commands = new Collection<string, Command>();
   public readonly logger = consola.create({ level: LogLevel.Debug });
+  public readonly prisma = new PrismaClient();
 
   public constructor() {
     super({
