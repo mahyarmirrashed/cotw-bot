@@ -8,11 +8,6 @@ import {
 import Bot from '../Bot';
 import Command from '../classes/Command';
 
-const sendEphemeralReply = (
-  interaction: ChatInputCommandInteraction,
-  content: string
-) => interaction.reply({ content, ephemeral: true });
-
 const updateServerChannelId = async (
   prisma: PrismaClient,
   serverId: string,
@@ -42,13 +37,22 @@ const handler = (bot: Bot, interaction: ChatInputCommandInteraction) => {
   if (!me) return;
 
   if (channel.type !== ChannelType.GuildText) {
-    sendEphemeralReply(interaction, 'Channel must be a text channel.');
+    interaction.reply({
+      content: 'Channel must be a text channel.',
+      ephemeral: true
+    });
   } else if (!channel.permissionsFor(me).has(PermissionBits.SendMessages)) {
-    sendEphemeralReply(interaction, 'Missing message sending permissions.');
+    interaction.reply({
+      content: 'Missing message sending permissions.',
+      ephemeral: true
+    });
   } else {
     updateServerChannelId(bot.prisma, guild.id, channel.id)
       .then(() =>
-        sendEphemeralReply(interaction, `Set COTW channel to ${channel}.`)
+        interaction.reply({
+          content: `Set COTW channel to ${channel}.`,
+          ephemeral: true
+        })
       )
       .catch(bot.logger.error);
   }
