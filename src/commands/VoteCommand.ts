@@ -2,7 +2,7 @@ import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 import Bot from '../Bot';
 import Command from '../classes/Command';
 
-const callback = (_bot: Bot, interaction: ChatInputCommandInteraction) => {
+const handler = (_bot: Bot, interaction: ChatInputCommandInteraction) => {
   const voter = interaction.user;
   const target = interaction.options.getUser('user', true);
   const category = interaction.options.getString('category', true);
@@ -33,5 +33,5 @@ export default new Command(
         .setRequired(true)
     )
     .toJSON(),
-  callback
+  handler
 );

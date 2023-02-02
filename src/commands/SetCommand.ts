@@ -30,7 +30,7 @@ const updateServerChannelId = async (
   });
 };
 
-const callback = (bot: Bot, interaction: ChatInputCommandInteraction) => {
+const handler = (bot: Bot, interaction: ChatInputCommandInteraction) => {
   const channel = interaction.channel;
   const guild = interaction.guild;
 
@@ -59,5 +59,5 @@ export default new Command(
     .setName('set')
     .setDescription('Set this channel as the COTW channel.')
     .toJSON(),
-  callback
+  handler
 );

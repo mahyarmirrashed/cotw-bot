@@ -6,7 +6,7 @@ import {
 import Bot from '../Bot';
 
 type CommandJSON = RESTPostAPIChatInputApplicationCommandsJSONBody;
-type CommandCallback = (
+type CommandHandler = (
   bot: Bot,
   interaction: ChatInputCommandInteraction
 ) => void;
@@ -14,7 +14,7 @@ type CommandCallback = (
 export default class Command {
   public constructor(
     private json: CommandJSON,
-    private callback: CommandCallback,
+    private handler: CommandHandler,
     private necessaryPermissions: bigint[] = [],
     private blacklistedChannels: string[] = [],
     private whitelistedChannels: string[] = []
@@ -56,6 +56,6 @@ export default class Command {
   }
 
   public handle(bot: Bot, interaction: ChatInputCommandInteraction) {
-    this.callback(bot, interaction);
+    this.handler(bot, interaction);
   }
 }

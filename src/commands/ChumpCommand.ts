@@ -3,7 +3,7 @@ import Bot from '../Bot';
 import Command from '../classes/Command';
 import { REASON_MAXIMUM_LENGTH, REASON_MINIMUM_LENGTH } from './constants';
 
-const callback = (_bot: Bot, interaction: ChatInputCommandInteraction) => {
+const handler = (_bot: Bot, interaction: ChatInputCommandInteraction) => {
   const nominator = interaction.user;
   const nominee = interaction.options.getUser('user', true);
   const reason = interaction.options.getString('reason', true);
@@ -32,5 +32,5 @@ export default new Command(
         .setRequired(true)
     )
     .toJSON(),
-  callback
+  handler
 );
