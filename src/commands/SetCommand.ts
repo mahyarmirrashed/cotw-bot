@@ -34,12 +34,12 @@ const handler = (bot: Bot, interaction: ChatInputCommandInteraction) => {
   const channel = interaction.channel;
   const guild = interaction.guild;
 
-  if (channel === null) return;
-  if (guild === null) return;
+  if (!channel) return;
+  if (!guild) return;
 
   const me = guild.members.me;
 
-  if (me === null) return;
+  if (!me) return;
 
   if (channel.type !== ChannelType.GuildText) {
     sendEphemeralReply(interaction, 'Channel must be a text channel.');
