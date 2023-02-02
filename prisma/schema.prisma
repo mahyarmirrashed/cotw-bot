@@ -16,7 +16,7 @@ model Nomination {
   id          Int            @id @default(autoincrement())
   nomineeId   String         @db.VarChar(20)
   nominatorId String         @db.VarChar(20)
-  reason      String
+  reason      String         @db.VarChar(200)
   type        NominationType
   server      Server         @relation(fields: [serverId], references: [id])
   serverId    String         @db.VarChar(20)
