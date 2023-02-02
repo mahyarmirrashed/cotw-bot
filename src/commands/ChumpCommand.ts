@@ -1,16 +1,39 @@
+import { NominationType } from '@prisma/client';
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 import Bot from '../Bot';
 import Command from '../classes/Command';
+import checkServerAndChannelMatch from '../helpers/CheckServerAndChannelMatch';
+import insertNomination from '../helpers/InsertNomination';
 import { REASON_MAXIMUM_LENGTH, REASON_MINIMUM_LENGTH } from './constants';
 
-const handler = (_bot: Bot, interaction: ChatInputCommandInteraction) => {
+const handler = (bot: Bot, interaction: ChatInputCommandInteraction) => {
   const nominator = interaction.user;
   const nominee = interaction.options.getUser('user', true);
   const reason = interaction.options.getString('reason', true);
 
-  interaction.reply({
-    content: `${nominator} chumped ${nominee} for ${reason}.`
-  });
+  const channel = interaction.channel;
+  const guild = interaction.guild;
+
+  if (!channel) return;
+  if (!guild) return;
+
+  checkServerAndChannelMatch(bot.prisma, guild.id, channel.id)
+    .then((server) =>
+      insertNomination(
+        bot.prisma,
+        server.id,
+        nominee.id,
+        nominator.id,
+        reason,
+        NominationType.CHUMP
+      )
+    )
+    .then(() =>
+      interaction.reply({
+        content: `${nominator} chumped ${nominee} for ${reason}.`
+      })
+    )
+    .catch(bot.logger.error);
 };
 
 export default new Command(
