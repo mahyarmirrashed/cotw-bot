@@ -7,7 +7,11 @@ import {
 } from 'discord.js';
 import Bot from '../Bot';
 import Command from '../classes/Command';
-import sendEphemeralReply from '../helpers/SendEphemeralReply';
+
+const sendEphemeralReply = (
+  interaction: ChatInputCommandInteraction,
+  content: string
+) => interaction.reply({ content, ephemeral: true });
 
 const updateServerChannelId = async (
   prisma: PrismaClient,
