@@ -8,7 +8,7 @@ import {
 import Bot from '../Bot';
 import Command from '../classes/Command';
 
-const updateServerChannelId = async (
+const upsertServerChannelId = async (
   prisma: PrismaClient,
   serverId: string,
   channelId: string
@@ -47,7 +47,7 @@ const handler = (bot: Bot, interaction: ChatInputCommandInteraction) => {
       ephemeral: true
     });
   } else {
-    updateServerChannelId(bot.prisma, guild.id, channel.id)
+    upsertServerChannelId(bot.prisma, guild.id, channel.id)
       .then(() =>
         interaction.reply({
           content: `Set COTW channel to ${channel}.`,
