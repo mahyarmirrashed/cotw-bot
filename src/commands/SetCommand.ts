@@ -1,3 +1,4 @@
+import { PrismaClient } from '@prisma/client';
 import {
   ChannelType,
   ChatInputCommandInteraction,
@@ -6,31 +7,48 @@ import {
 } from 'discord.js';
 import Bot from '../Bot';
 import Command from '../classes/Command';
+import sendEphemeralReply from '../helpers/SendEphemeralReply';
 
-const callback = (_bot: Bot, interaction: ChatInputCommandInteraction) => {
+const updateServerChannelId = async (
+  prisma: PrismaClient,
+  serverId: string,
+  channelId: string
+) => {
+  return prisma.server.upsert({
+    where: { id: serverId },
+    create: {
+      id: serverId,
+      channelId
+    },
+    update: {
+      channelId
+    }
+  });
+};
+
+const callback = (bot: Bot, interaction: ChatInputCommandInteraction) => {
   const channel = interaction.channel;
-  const me = interaction.guild?.members.me;
+  const guild = interaction.guild;
 
   if (channel === null) return;
-  if (me === null || me === undefined) return;
+  if (guild === null) return;
+
+  const me = guild.members.me;
+
+  if (me === null) return;
 
   if (channel.type !== ChannelType.GuildText) {
-    interaction.reply({
-      content: 'Channel must be a text channel.',
-      ephemeral: true
-    });
+    sendEphemeralReply(interaction, 'Channel must be a text channel.');
   } else if (
     !channel.permissionsFor(me).has(PermissionFlagsBits.SendMessages)
   ) {
-    interaction.reply({
-      content: 'Do not have permissions to send messages in this channel.',
-      ephemeral: true
-    });
+    sendEphemeralReply(interaction, 'Missing message sending permissions.');
   } else {
-    interaction.reply({
-      content: `Set ${channel} as the COTW channel.`,
-      ephemeral: true
-    });
+    updateServerChannelId(bot.prisma, guild.id, channel.id)
+      .then(() =>
+        sendEphemeralReply(interaction, `Set COTW channel to ${channel}.`)
+      )
+      .catch(bot.logger.error);
   }
 };
 
