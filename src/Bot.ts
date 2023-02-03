@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import chalk from 'chalk';
 import consola, { LogLevel } from 'consola';
+import { CronJob } from 'cron';
 import {
   ActivityType,
   Client,
@@ -12,7 +13,7 @@ import {
 } from 'discord.js';
 import Command from './classes/Command';
 import Commands from './commands';
-import { GuildEvents } from './events';
+import { CronEvents, GuildEvents } from './events';
 
 export default class Bot extends Client {
   private readonly commands = new Collection<string, Command>();
@@ -47,6 +48,14 @@ export default class Bot extends Client {
     else return Promise.reject('Command does not exist.');
   }
 
+  private launchCronJob(cronTime: string, handler: (bot: Bot) => void) {
+    new CronJob({
+      cronTime,
+      onTick: () => handler(this),
+      timeZone: process.env.TZ
+    }).start();
+  }
+
   private register() {
     this.registerCronEvents();
     this.registerGuildEvents();
@@ -55,7 +64,10 @@ export default class Bot extends Client {
   }
 
   private registerCronEvents() {
-    //
+    CronEvents.forEach((cronEvent) => {
+      this.logger.info(`Registering ${chalk.cyan(cronEvent.name)} cron job...`);
+      this.launchCronJob(cronEvent.time, cronEvent.handler);
+    });
   }
 
   private registerGuildEvents() {
