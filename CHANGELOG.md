@@ -1,5 +1,30 @@
 
 
+## [0.5.0](https://github.com/mahyarmirrashed/cotw-bot/compare/v0.4.0...v0.5.0) (2023-02-03)
+
+
+### Features
+
+* add ability to setting cotw channel ([ad41513](https://github.com/mahyarmirrashed/cotw-bot/commit/ad4151340ccffc4e629c4d33a2a62d7e8b7c28a2))
+* add abstraction for sending emphemeral replies for interactions ([b3a0b6c](https://github.com/mahyarmirrashed/cotw-bot/commit/b3a0b6c6ca4370b11942abcd970d839dff3ba966))
+* add base prisma schema ([4c1411f](https://github.com/mahyarmirrashed/cotw-bot/commit/4c1411fbb85fe39f028b72232af36941d75687dd))
+* add candidate model and eligibility intermediary model for voting ([9a22d83](https://github.com/mahyarmirrashed/cotw-bot/commit/9a22d8382a0bac03412626df1e1edbecbd8d7ed7))
+* add database functionality to voting command ([2befb46](https://github.com/mahyarmirrashed/cotw-bot/commit/2befb46fa599fd060112d5e2dfc96f5759f87661))
+* add generalized method for inserting nominations ([0146f9e](https://github.com/mahyarmirrashed/cotw-bot/commit/0146f9e1e4dc115802d0d679e39da0db4fcd9934))
+* add method for checking if serverId and channelId combination exists ([c7013f3](https://github.com/mahyarmirrashed/cotw-bot/commit/c7013f3547c1472329c3153bd131e61cb6d6744f))
+* add prisma client as part of intiailization ([372e84a](https://github.com/mahyarmirrashed/cotw-bot/commit/372e84a79f914a3b41ca3c63761d3b139cacb184))
+* copy over functionality for chump command ([33749cf](https://github.com/mahyarmirrashed/cotw-bot/commit/33749cf3040ffcdd39ff95f9afea491bb89f21a8))
+* implement functionality for champ command ([49365cd](https://github.com/mahyarmirrashed/cotw-bot/commit/49365cd2834d152c9ce5dcf42d2f640214f9b682))
+
+
+### Bug Fixes
+
+* add field length restriction on reason ([da73d1d](https://github.com/mahyarmirrashed/cotw-bot/commit/da73d1d6bd6ca7944752bbdc742ecb4520a445ed))
+* add field length restriction server id ([a5e9a91](https://github.com/mahyarmirrashed/cotw-bot/commit/a5e9a91926fdb329add133e245a4d9884c728a5e))
+* add unique constraint for candidates based on their id and week number ([c573f15](https://github.com/mahyarmirrashed/cotw-bot/commit/c573f15db11b924542996d867f44e1085457dc64))
+* champ and chump fields can be optional on votes ([3a18ed9](https://github.com/mahyarmirrashed/cotw-bot/commit/3a18ed981451dae655e17e641c28b7012fd6195f))
+* update candidate and vote models to be unique to servers ([5f23c6c](https://github.com/mahyarmirrashed/cotw-bot/commit/5f23c6cd1f7cb52a3808e82162a0e3c5c6ae13d0))
+
 ## [0.4.0](https://github.com/mahyarmirrashed/cotw-bot/compare/v0.3.0...v0.4.0) (2023-01-18)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "cotw-bot",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Discord bot for voting chumps/champs of the week.",
   "main": "index.js",
   "repository": "https://github.com/mahyarmirrashed/cotw-bot.git",
