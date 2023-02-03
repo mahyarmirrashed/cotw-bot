@@ -7,3 +7,7 @@
 </p>
 
 This is a Discord bot for voting your favorite Chump/Champ of the Week.
+
+#### Running
+
+To run this Discord bot, ensure to have an existing MariaDB database and specify the connection URL through the `DATABASE_URL` environment variable.
