@@ -3,7 +3,7 @@ import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 import Bot from '../Bot';
 import Command from '../classes/Command';
 
-const checkCandidateExists = async (
+const checkEligibleCandidateExists = async (
   prisma: PrismaClient,
   serverId: string,
   candidateId: string,
@@ -88,7 +88,7 @@ const handler = (bot: Bot, interaction: ChatInputCommandInteraction) => {
 
   if (!guild) return;
 
-  checkCandidateExists(bot.prisma, guild.id, target.id, type)
+  checkEligibleCandidateExists(bot.prisma, guild.id, target.id, type)
     .catch(() =>
       interaction.reply({
         content: `${voter} is not eligible to be voted as ${type}-of-the-week.`,
