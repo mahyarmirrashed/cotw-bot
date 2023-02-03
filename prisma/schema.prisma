@@ -15,16 +15,19 @@ model Candidate {
   champVotes  Vote[]        @relation(name: "ChampVote")
   chumpVotes  Vote[]        @relation(name: "ChumpVote")
   eligibility Eligibility[]
-  weekNumber  Int
 
-  @@unique([candidateId, serverId, weekNumber])
+  @@unique([candidateId, serverId])
 }
 
 model Eligibility {
   id          Int            @id @default(autoincrement())
   candidate   Candidate      @relation(fields: [candidateId], references: [id])
   candidateId Int
+  server      Server         @relation(fields: [serverId], references: [id])
+  serverId    String         @db.VarChar(20)
   type        NominationType
+
+  @@unique([candidateId, serverId, type])
 }
 
 enum NominationType {
@@ -40,27 +43,26 @@ model Nomination {
   type        NominationType
   server      Server         @relation(fields: [serverId], references: [id])
   serverId    String         @db.VarChar(20)
-  weekNumber  Int
 }
 
 model Server {
-  id          String       @id @default(cuid()) @db.VarChar(20)
-  channelId   String?      @db.VarChar(20)
-  candidates  Candidate[]
-  nominations Nomination[]
-  votes       Vote[]
+  id            String        @id @default(cuid()) @db.VarChar(20)
+  channelId     String?       @db.VarChar(20)
+  candidates    Candidate[]
+  eligibilities Eligibility[]
+  nominations   Nomination[]
+  votes         Vote[]
 }
 
 model Vote {
-  id         Int        @id @default(autoincrement())
-  voterId    String     @db.VarChar(20)
-  server     Server     @relation(fields: [serverId], references: [id])
-  serverId   String     @db.VarChar(20)
-  champ      Candidate? @relation(name: "ChampVote", fields: [champId], references: [id])
-  chump      Candidate? @relation(name: "ChumpVote", fields: [chumpId], references: [id])
-  champId    Int?
-  chumpId    Int?
-  weekNumber Int
+  id       Int        @id @default(autoincrement())
+  voterId  String     @db.VarChar(20)
+  server   Server     @relation(fields: [serverId], references: [id])
+  serverId String     @db.VarChar(20)
+  champ    Candidate? @relation(name: "ChampVote", fields: [champId], references: [id])
+  chump    Candidate? @relation(name: "ChumpVote", fields: [chumpId], references: [id])
+  champId  Int?
+  chumpId  Int?
 
-  @@unique([serverId, voterId, weekNumber])
+  @@unique([serverId, voterId])
 }

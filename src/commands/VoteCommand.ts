@@ -1,6 +1,5 @@
 import { NominationType, PrismaClient } from '@prisma/client';
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
-import moment from 'moment';
 import Bot from '../Bot';
 import Command from '../classes/Command';
 
@@ -8,14 +7,12 @@ const checkCandidateExists = async (
   prisma: PrismaClient,
   serverId: string,
   candidateId: string,
-  weekNumber: number,
   nominationType: NominationType
 ) => {
   return prisma.candidate.findFirstOrThrow({
     where: {
       candidateId,
-      serverId,
-      weekNumber
+      serverId
     },
     include: {
       eligibility: {
@@ -30,23 +27,20 @@ const checkCandidateExists = async (
 const createVote = async (
   prisma: PrismaClient,
   serverId: string,
-  voterId: string,
-  weekNumber: number
+  voterId: string
 ) => {
   return prisma.vote.upsert({
     where: {
-      serverId_voterId_weekNumber: {
+      serverId_voterId: {
         serverId,
-        voterId,
-        weekNumber
+        voterId
       }
     },
     create: {
       server: {
         connect: { id: serverId }
       },
-      voterId,
-      weekNumber
+      voterId
     },
     update: {}
   });
@@ -56,7 +50,6 @@ const updateVote = async (
   prisma: PrismaClient,
   serverId: string,
   voterId: string,
-  weekNumber: number,
   candidateId: string,
   nominationType: NominationType
 ) => {
@@ -64,17 +57,15 @@ const updateVote = async (
     .findFirstOrThrow({
       where: {
         candidateId,
-        serverId,
-        weekNumber
+        serverId
       }
     })
     .then((candidate) =>
       prisma.vote.update({
         where: {
-          serverId_voterId_weekNumber: {
+          serverId_voterId: {
             serverId,
-            voterId,
-            weekNumber
+            voterId
           }
         },
         data: {
@@ -94,21 +85,18 @@ const handler = (bot: Bot, interaction: ChatInputCommandInteraction) => {
   const type = <NominationType>interaction.options.getString('category', true);
 
   const guild = interaction.guild;
-  const weekNumber = moment().subtract(1, 'weeks').isoWeek();
 
   if (!guild) return;
 
-  checkCandidateExists(bot.prisma, guild.id, target.id, weekNumber, type)
+  checkCandidateExists(bot.prisma, guild.id, target.id, type)
     .catch(() =>
       interaction.reply({
         content: `${voter} is not eligible to be voted as ${type}-of-the-week.`,
         ephemeral: true
       })
     )
-    .then(() => createVote(bot.prisma, guild.id, voter.id, weekNumber))
-    .then(() =>
-      updateVote(bot.prisma, guild.id, voter.id, weekNumber, target.id, type)
-    )
+    .then(() => createVote(bot.prisma, guild.id, voter.id))
+    .then(() => updateVote(bot.prisma, guild.id, voter.id, target.id, type))
     .then(() =>
       interaction.reply({
         content: `${voter} voted ${target} as this week's ${type}-of-the-week!`
