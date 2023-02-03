@@ -2,7 +2,7 @@ import { Events } from 'discord.js';
 import Bot from '../../Bot';
 import GuildEvent from '../../interfaces/GuildEvent';
 
-const callback = (bot: Bot) => {
+const handler = (bot: Bot) => {
   if (bot.user) {
     bot.logger.success('Logged into client!');
   } else {
@@ -12,7 +12,7 @@ const callback = (bot: Bot) => {
 
 const ClientReadyEvent: GuildEvent<unknown> = {
   name: Events.ClientReady,
-  callback
+  handler
 };
 
 export default ClientReadyEvent;

@@ -7,7 +7,7 @@ import {
 import Bot from '../../Bot';
 import GuildEvent from '../../interfaces/GuildEvent';
 
-const callback = (bot: Bot, interaction: Interaction) => {
+const handler = (bot: Bot, interaction: Interaction) => {
   const channel = interaction.channel;
   const permissions = interaction.memberPermissions;
 
@@ -41,7 +41,7 @@ const callback = (bot: Bot, interaction: Interaction) => {
 
 const InteractionCreateEvent: GuildEvent<Interaction> = {
   name: Events.InteractionCreate,
-  callback
+  handler
 };
 
 export default InteractionCreateEvent;
